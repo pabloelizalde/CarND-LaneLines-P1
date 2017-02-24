@@ -46,13 +46,19 @@ My pipeline consisted of 5 steps:
 ![image5](./examples/result.png)
 
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+In order to draw a single line on the left and right lanes, I modified the draw_lines() function by calculating the slope and the y-intercept. Once I have both values I can interpolate any value following the formula: `y = mx + b`
+When getting the slope, we divide the lines in right (if value is positive) and left (if value is negative). Then calculate the value of `y` for the max and min values of `x` that defined previously in the region of interest.
+The result is the following:
+
+![image6](./examples/draw_line.png)
 
 ###2. Identify potential shortcomings with your current pipeline
 
 One shortcoming that I saw in my solution is that sometimes horizontal lines are being detected. 
+Another problem is that several lines are being drawn when I have segmented lines. 
 
 
 ###3. Suggest possible improvements to your pipeline
 
 An improvement for my solution would be discard detected lines that are horizontal, or pretty close to a horizontal line.
+To improve the look of the extended segmented lines, could be draw just one line for each side of the lane. So, the idea will be to merge somehow the lines detected for each side, and draw just one for each side.
